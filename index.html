@@ -1,0 +1,3513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillSprout – Skill Gap Analysis & Career Growth Planner</title>
+  
+  <style>
+    /* 
+      ==========================================================================
+      SKILLSPROUT STYLESHEET
+      Designed for clarity, high accessibility, and a calming agricultural theme.
+      Color Palette:
+        - Forest Green: #214F36
+        - Leaf Green:   #6E9F61
+        - Light Green:  #EAF3E7
+        - Warm Cream:   #FBF8EF
+        - Crisp White:  #FFFFFF
+      ==========================================================================
+    */
+
+    :root {
+      --primary-forest: #214F36;
+      --primary-leaf: #6E9F61;
+      --light-green: #EAF3E7;
+      --warm-cream: #FBF8EF;
+      --white: #FFFFFF;
+      --text-dark: #193322;
+      --text-muted: #4B6354;
+      --border-color: #D3E4CF;
+      --card-bg: #FFFFFF;
+      
+      /* Priority Badges */
+      --priority-high-bg: #FEECEB;
+      --priority-high-text: #C0392B;
+      --priority-med-bg: #FFF5E5;
+      --priority-med-text: #B76E00;
+      --priority-low-bg: #E8F7EC;
+      --priority-low-text: #21833E;
+
+      /* Shadows & Radii */
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-subtle: 0 4px 18px rgba(33, 79, 54, 0.08);
+      --shadow-hover: 0 8px 26px rgba(33, 79, 54, 0.14);
+      --transition: all 0.25s ease-in-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--warm-cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* Accessibility focus rings */
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--primary-leaf);
+      outline-offset: 2px;
+    }
+
+    /* Container for consistent alignment */
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Section padding */
+    .section-padding {
+      padding: 60px 0;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      color: var(--primary-forest);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    h1 { font-size: 2.6rem; }
+    h2 { font-size: 2rem; margin-bottom: 14px; }
+    h3 { font-size: 1.4rem; margin-bottom: 8px; }
+    h4 { font-size: 1.15rem; margin-bottom: 6px; }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+    }
+
+    .lead-text {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 750px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header p {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--light-green);
+      color: var(--primary-forest);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      line-height: 1.2;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-forest);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background-color: #173826;
+      box-shadow: 0 4px 12px rgba(33, 79, 54, 0.25);
+    }
+
+    .btn-secondary {
+      background-color: var(--light-green);
+      color: var(--primary-forest);
+      border-color: var(--primary-leaf);
+    }
+
+    .btn-secondary:hover {
+      background-color: #d8ebd3;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border-color: var(--primary-forest);
+      color: var(--primary-forest);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary-forest);
+      color: var(--white);
+    }
+
+    .btn-small {
+      padding: 8px 16px;
+      font-size: 0.88rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .btn-danger {
+      background-color: #fff0f0;
+      color: #c0392b;
+      border-color: #f5b7b1;
+    }
+
+    .btn-danger:hover {
+      background-color: #c0392b;
+      color: var(--white);
+    }
+
+    /* Cards */
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-subtle);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(251, 248, 239, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 0;
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--primary-forest);
+      text-decoration: none;
+    }
+
+    .brand-logo span {
+      color: var(--primary-leaf);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      padding: 6px 0;
+      position: relative;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary-forest);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--primary-leaf);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after, .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: var(--primary-forest);
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      padding: 50px 0 70px 0;
+      background: linear-gradient(180deg, var(--warm-cream) 0%, var(--light-green) 100%);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .hero-illustration {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .hero-illustration svg {
+      width: 100%;
+      max-width: 380px;
+      height: auto;
+    }
+
+    /* Quick helper banner */
+    .helper-banner {
+      background-color: var(--white);
+      border-left: 4px solid var(--primary-leaf);
+      padding: 14px 18px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    /* ==========================================================================
+       FEATURE CARDS SECTION
+       ========================================================================== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .feature-card {
+      text-align: left;
+      border-top: 4px solid var(--primary-leaf);
+    }
+
+    .feature-icon-bubble {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background-color: var(--light-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: var(--primary-forest);
+    }
+
+    /* ==========================================================================
+       HOW IT WORKS SECTION
+       ========================================================================== */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      position: relative;
+    }
+
+    .step-card {
+      background-color: var(--white);
+      border-radius: var(--radius-md);
+      padding: 30px 24px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-subtle);
+      position: relative;
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      background-color: var(--primary-forest);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px auto;
+      border: 3px solid var(--light-green);
+    }
+
+    /* ==========================================================================
+       FORMS & CURRICULUM INPUT
+       ========================================================================== */
+    .form-section {
+      background-color: var(--white);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .form-wrapper {
+      background-color: var(--warm-cream);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: var(--text-dark);
+      font-size: 0.95rem;
+    }
+
+    .form-group .hint {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: -2px;
+      margin-bottom: 4px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 1rem;
+      border: 1px solid #C4D7BF;
+      border-radius: var(--radius-sm);
+      background-color: var(--white);
+      color: var(--text-dark);
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-leaf);
+      box-shadow: 0 0 0 3px rgba(110, 159, 97, 0.2);
+    }
+
+    textarea.form-control {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    /* Quick tags helper */
+    .tags-helper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .tag-chip {
+      background-color: var(--white);
+      border: 1px solid var(--border-color);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      color: var(--primary-forest);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tag-chip:hover {
+      background-color: var(--light-green);
+      border-color: var(--primary-leaf);
+    }
+
+    /* ==========================================================================
+       SKILL ASSESSMENT SECTION
+       ========================================================================== */
+    .assessment-category-block {
+      background-color: var(--white);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border-color);
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--light-green);
+      padding-bottom: 12px;
+    }
+
+    .category-header h3 {
+      margin: 0;
+      color: var(--primary-forest);
+    }
+
+    .skill-rating-item {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #EDF3EC;
+    }
+
+    .skill-rating-item:last-child {
+      border-bottom: none;
+    }
+
+    .skill-info strong {
+      display: block;
+      color: var(--text-dark);
+      font-size: 1rem;
+    }
+
+    .skill-info span {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    /* Rating radio group */
+    .rating-options {
+      display: flex;
+      gap: 8px;
+    }
+
+    .rating-label {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 6px;
+      background-color: var(--warm-cream);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-align: center;
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .rating-label:hover {
+      border-color: var(--primary-leaf);
+      background-color: var(--light-green);
+    }
+
+    .rating-label input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .rating-label span.tier-name {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+    }
+
+    .rating-label span.tier-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    /* Checked state */
+    .rating-label:has(input[type="radio"]:checked) {
+      background-color: var(--primary-forest);
+      border-color: var(--primary-forest);
+    }
+
+    .rating-label:has(input[type="radio"]:checked) span.tier-name {
+      color: var(--white);
+    }
+
+    .rating-label:has(input[type="radio"]:checked) span.tier-desc {
+      color: #CFE4D6;
+    }
+
+    /* ==========================================================================
+       DASHBOARD: SKILL GAP ANALYSIS & RESULTS
+       ========================================================================== */
+    .results-hero-card {
+      background: linear-gradient(135deg, var(--primary-forest) 0%, #153A26 100%);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .results-hero-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .score-circle-wrapper {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      width: 170px;
+      height: 170px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      border: 4px solid var(--primary-leaf);
+      box-shadow: 0 0 20px rgba(110, 159, 97, 0.3);
+    }
+
+    .score-number {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .score-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #D2E7DC;
+      margin-top: 4px;
+    }
+
+    .results-summary h2 {
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .results-summary p {
+      color: #D8EADF;
+      margin-bottom: 14px;
+    }
+
+    .results-kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .kpi-card {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .kpi-card .kpi-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .kpi-card .kpi-lbl {
+      font-size: 0.8rem;
+      color: #D2E7DC;
+    }
+
+    /* Gap Breakdown Cards */
+    .analysis-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      background-color: var(--white);
+      border: 1px solid var(--border-color);
+      color: var(--text-dark);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background-color: var(--primary-forest);
+      color: var(--white);
+      border-color: var(--primary-forest);
+    }
+
+    .gap-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .gap-card {
+      background-color: var(--white);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      border: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .priority-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .priority-high {
+      background-color: var(--priority-high-bg);
+      color: var(--priority-high-text);
+      border: 1px solid #F5C6CB;
+    }
+
+    .priority-medium {
+      background-color: var(--priority-med-bg);
+      color: var(--priority-med-text);
+      border: 1px solid #FFEBAA;
+    }
+
+    .priority-low {
+      background-color: var(--priority-low-bg);
+      color: var(--priority-low-text);
+      border: 1px solid #C3E6CB;
+    }
+
+    /* Comparison Bar Visual */
+    .bar-comparison-box {
+      margin-top: 8px;
+    }
+
+    .bar-track {
+      height: 10px;
+      background-color: #E2ECE0;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 4px;
+      position: relative;
+    }
+
+    .bar-fill-user {
+      height: 100%;
+      background-color: var(--primary-leaf);
+      border-radius: 5px;
+      transition: width 0.6s ease;
+    }
+
+    .bar-bench-marker {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background-color: var(--primary-forest);
+      box-shadow: 0 0 4px rgba(0,0,0,0.4);
+    }
+
+    .bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       COURSE RECOMMENDATIONS
+       ========================================================================== */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .course-card {
+      background-color: var(--white);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-subtle);
+      transition: var(--transition);
+    }
+
+    .course-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .course-platform {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary-forest);
+      background-color: var(--light-green);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .course-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary-forest);
+      margin-bottom: 8px;
+    }
+
+    .course-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .course-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    /* ==========================================================================
+       ROADMAP SECTION
+       ========================================================================== */
+    .roadmap-progress-box {
+      background-color: var(--white);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      border: 1px solid var(--border-color);
+    }
+
+    .roadmap-timeline {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .week-card {
+      background-color: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .week-header {
+      background-color: var(--light-green);
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .week-header h4 {
+      margin: 0;
+      color: var(--primary-forest);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .week-body {
+      padding: 22px;
+    }
+
+    .task-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 12px;
+      background-color: var(--warm-cream);
+      border-radius: var(--radius-sm);
+      border: 1px solid #E2EFE0;
+      transition: var(--transition);
+    }
+
+    .task-item:hover {
+      background-color: #F3F8F1;
+    }
+
+    .task-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      accent-color: var(--primary-forest);
+      cursor: pointer;
+    }
+
+    .task-content {
+      flex: 1;
+    }
+
+    .task-title {
+      font-weight: 600;
+      font-size: 0.96rem;
+      color: var(--text-dark);
+      display: block;
+    }
+
+    .task-detail {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      display: block;
+    }
+
+    .task-item.completed {
+      background-color: #EBF5EB;
+      opacity: 0.85;
+    }
+
+    .task-item.completed .task-title {
+      text-decoration: line-through;
+      color: #386644;
+    }
+
+    /* ==========================================================================
+       INTERVIEW PREPARATION CENTRE
+       ========================================================================== */
+    .interview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .interactive-rehearsal-card {
+      background-color: var(--white);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .timer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #FDF3E3;
+      color: #A36400;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      border: 1px solid #F5DEB3;
+    }
+
+    .star-step-box {
+      background-color: var(--warm-cream);
+      border-left: 4px solid var(--primary-forest);
+      padding: 12px 16px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 12px;
+    }
+
+    /* ==========================================================================
+       PERSONAL NOTES SECTION
+       ========================================================================== */
+    .notes-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      background-color: var(--light-green);
+      padding: 14px 20px;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      border: 1px solid var(--border-color);
+      border-bottom: none;
+    }
+
+    .notes-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .notes-editor {
+      width: 100%;
+      min-height: 480px;
+      padding: 24px;
+      font-family: 'Consolas', 'Courier New', monospace, sans-serif;
+      font-size: 0.98rem;
+      line-height: 1.65;
+      border: 1px solid var(--border-color);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      background-color: var(--white);
+      color: #1a2f23;
+      resize: vertical;
+    }
+
+    .notes-editor:focus {
+      outline: none;
+      border-color: var(--primary-leaf);
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .site-footer {
+      background-color: var(--primary-forest);
+      color: var(--white);
+      padding: 50px 0 25px 0;
+      margin-top: 60px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 36px;
+      margin-bottom: 36px;
+    }
+
+    .footer-col h4 {
+      color: var(--white);
+      margin-bottom: 16px;
+      font-size: 1.15rem;
+    }
+
+    .footer-col p {
+      color: #C7DFC8;
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: #D6E8D7;
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
+    .footer-disclaimer-box {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      border-left: 4px solid var(--primary-leaf);
+      margin-bottom: 30px;
+    }
+
+    .footer-disclaimer-box p {
+      font-size: 0.88rem;
+      color: #D2E4D4;
+      margin: 0;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #A9CDAF;
+    }
+
+    /* ==========================================================================
+       TOAST NOTIFICATION & MODAL
+       ========================================================================== */
+    .toast-notice {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--primary-forest);
+      color: var(--white);
+      padding: 12px 22px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .toast-notice.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Print specific styling */
+    @media print {
+      body {
+        background-color: #ffffff;
+        color: #000000;
+      }
+      .site-header, .hero-section, .features-grid, .steps-grid, 
+      .form-section, .notes-toolbar, .site-footer, .btn, .mobile-menu-btn {
+        display: none !important;
+      }
+      #notes-section {
+        display: block !important;
+        padding: 0 !important;
+      }
+      .notes-editor {
+        border: none !important;
+        font-size: 11pt !important;
+        white-space: pre-wrap !important;
+        height: auto !important;
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-cta-group {
+        justify-content: center;
+      }
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .results-hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .gap-card {
+        grid-template-columns: 1fr;
+      }
+      .interview-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.1rem; }
+      h2 { font-size: 1.6rem; }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--warm-cream);
+        padding: 20px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        border-bottom: 1px solid var(--border-color);
+        gap: 14px;
+      }
+      .nav-links.mobile-open {
+        display: flex;
+      }
+      .skill-rating-item {
+        grid-template-columns: 1fr;
+      }
+      .rating-options {
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="container nav-wrapper">
+      <a href="#hero" class="brand-logo" aria-label="SkillSprout Home">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-leaf);">
+          <path d="M12 22v-9" />
+          <path d="M9 9a3 3 0 0 1 6 0c0 4-3 6-3 6s-3-2-3-6Z" fill="#EAF3E7" />
+          <path d="M12 13a4.5 4.5 0 0 0 4.5-4.5c0-1.8-1.2-3.3-3-4" />
+          <path d="M12 13a4.5 4.5 0 0 1-4.5-4.5c0-1.8 1.2-3.3 3-4" />
+        </svg>
+        Skill<span>Sprout</span>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+        ☰
+      </button>
+
+      <nav role="navigation">
+        <ul class="nav-links" id="navLinksList">
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#curriculum-section">Curriculum & Role</a></li>
+          <li><a href="#assessment-section">Skill Assessment</a></li>
+          <li><a href="#analysis-section">Gap Analysis</a></li>
+          <li><a href="#roadmap-section">Roadmap</a></li>
+          <li><a href="#interview-section">Interview Prep</a></li>
+          <li><a href="#notes-section">My Notes</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="badge-pill">
+          <span>🌱</span> Beginner & Rural Friendly Career Hub
+        </div>
+        <h1>Grow Your Skills. Grow Your Future.</h1>
+        <p class="lead-text">
+          Discover the skills employers expect, identify your learning gaps, and prepare confidently for your dream job with a personalized learning plan.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#curriculum-section" class="btn btn-primary">
+            Start Skill Assessment →
+          </a>
+          <a href="#roadmap-section" class="btn btn-secondary">
+            Explore Learning Roadmap
+          </a>
+          <button type="button" class="btn btn-outline btn-small" id="btnFillDemoData" title="Load sample student profile to quickly test the website">
+            ⚡ Quick Demo Profile
+          </button>
+        </div>
+
+        <div class="helper-banner">
+          <div>
+            <strong style="color: var(--primary-forest); font-size: 0.95rem;">Rural & Beginner Friendly</strong>
+            <p style="font-size: 0.88rem; margin: 0; color: var(--text-muted);">
+              Clear explanations, 100% free courses, no fees, no login required, and works completely offline.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-illustration" aria-hidden="true">
+        <!-- Botanical field & plant growth SVG -->
+        <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+          <!-- Gentle Sky & Sun -->
+          <circle cx="200" cy="90" r="48" fill="#FBF8EF" stroke="#E2EFE0" stroke-width="4" />
+          <circle cx="200" cy="90" r="38" fill="#FFF8E7" />
+          
+          <!-- Hills / Agricultural Terraces -->
+          <path d="M-20 280 Q 90 220, 200 240 T 420 220 L 420 320 L -20 320 Z" fill="#EAF3E7" />
+          <path d="M-20 295 Q 110 250, 220 265 T 420 250 L 420 320 L -20 320 Z" fill="#D3E4CF" />
+          <path d="M0 310 L 400 310" stroke="#214F36" stroke-width="8" stroke-linecap="round" />
+
+          <!-- Main Growing Sprout / Plant -->
+          <path d="M200 305 Q 195 230, 200 150" stroke="#214F36" stroke-width="6" fill="none" stroke-linecap="round" />
+          
+          <!-- Bottom Leaves -->
+          <path d="M198 250 C 160 250, 140 220, 145 190 C 175 195, 195 225, 198 250 Z" fill="#6E9F61" />
+          <path d="M202 235 C 240 235, 260 205, 255 175 C 225 180, 205 210, 202 235 Z" fill="#6E9F61" />
+
+          <!-- Middle Leaves -->
+          <path d="M198 190 C 165 185, 150 160, 155 135 C 180 140, 195 165, 198 190 Z" fill="#7DBB6E" />
+          <path d="M202 175 C 235 170, 250 145, 245 120 C 220 125, 205 150, 202 175 Z" fill="#7DBB6E" />
+
+          <!-- Top Tender Budding Leaves -->
+          <path d="M200 150 C 185 130, 185 105, 200 90 C 215 105, 215 130, 200 150 Z" fill="#9CD88E" />
+
+          <!-- Educational Career Badges Floating -->
+          <g transform="translate(60, 110)">
+            <rect width="80" height="32" rx="16" fill="#FFFFFF" stroke="#6E9F61" stroke-width="1.5" />
+            <text x="40" y="20" font-size="11" font-weight="700" fill="#214F36" text-anchor="middle">Curriculum</text>
+          </g>
+          <g transform="translate(260, 90)">
+            <rect width="84" height="32" rx="16" fill="#FFFFFF" stroke="#214F36" stroke-width="1.5" />
+            <text x="42" y="20" font-size="11" font-weight="700" fill="#214F36" text-anchor="middle">Job Ready 🎯</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FEATURE CARDS SECTION
+       ========================================================================== -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">Why SkillSprout?</span>
+        <h2>Everything You Need to Step Confidently Into the Workforce</h2>
+        <p class="lead-text">
+          Many college courses teach great fundamentals, but modern industry expects practical tools and interview readiness. We show you the exact bridge.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="card feature-card">
+          <div class="feature-icon-bubble">📚</div>
+          <h3>Curriculum Analysis</h3>
+          <p>Understand the skills you have learned through your course and identify topics you may need to strengthen.</p>
+        </div>
+
+        <div class="card feature-card">
+          <div class="feature-icon-bubble">🔍</div>
+          <h3>Skill Gap Detection</h3>
+          <p>Identify missing or weak technical, practical, communication, and interview skills compared to employer demands.</p>
+        </div>
+
+        <div class="card feature-card">
+          <div class="feature-icon-bubble">🎓</div>
+          <h3>Course Recommendations</h3>
+          <p>Discover reputable, 100% free courses, tutorials, and practice exercises with direct links and no hidden fees.</p>
+        </div>
+
+        <div class="card feature-card">
+          <div class="feature-icon-bubble">📝</div>
+          <h3>Personal Improvement Notes</h3>
+          <p>Create a personalized action plan, rehearse real interview answers, and prepare for job interviews seamlessly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       HOW IT WORKS SECTION
+       ========================================================================== -->
+  <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">Three Simple Steps</span>
+        <h2>How It Works</h2>
+        <p class="lead-text">Simple, guided, and transparent. No complicated jargon.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Enter Details</h3>
+          <p>Enter your curriculum subjects, degree details, and your target dream job role.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Assess Skills</h3>
+          <p>Rate your current confidence in technical, communication, and interview skills.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Follow Roadmap</h3>
+          <p>Follow your customized 4-week learning roadmap and prepare for interviews with structured notes.</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 36px;">
+        <a href="#curriculum-section" class="btn btn-primary">
+          Start My Career Journey →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CURRICULUM AND JOB ROLE INPUT FORM
+       ========================================================================== -->
+  <section class="section-padding form-section" id="curriculum-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">Step 1 of 3</span>
+        <h2>Your Curriculum & Target Job Role</h2>
+        <p class="lead-text">Tell us about what you have studied in college and what role you are targeting in the industry.</p>
+      </div>
+
+      <div class="form-wrapper">
+        <form id="studentInputForm" onsubmit="handleCurriculumSubmit(event)">
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="studentName">Student Name (Optional)</label>
+              <span class="hint">How you'd like your plan addressed</span>
+              <input type="text" id="studentName" class="form-control" placeholder="e.g. Ramesh Kumar">
+            </div>
+
+            <div class="form-group">
+              <label for="degreeName">Degree or Course Name *</label>
+              <span class="hint">Your college degree</span>
+              <input type="text" id="degreeName" class="form-control" placeholder="e.g. B.Tech / B.Sc / BCA / B.Com / Diploma" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="branchName">Branch or Specialization *</label>
+              <span class="hint">Your field of study</span>
+              <input type="text" id="branchName" class="form-control" placeholder="e.g. Computer Science / Electronics / Commerce / Arts" required>
+            </div>
+
+            <div class="form-group">
+              <label for="studyYear">Current Year of Study *</label>
+              <span class="hint">Select your academic stage</span>
+              <select id="studyYear" class="form-control" required>
+                <option value="">-- Choose Academic Year --</option>
+                <option value="1st Year">1st Year (Exploring & Foundations)</option>
+                <option value="2nd Year">2nd Year (Core Subjects)</option>
+                <option value="3rd Year">3rd Year (Pre-Final Year / Internships)</option>
+                <option value="4th Year / Final Year">4th Year / Final Year (Placements)</option>
+                <option value="Recent Graduate / Job Seeker">Recent Graduate / Active Job Seeker</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="targetJobRole">Target Job Role *</label>
+            <span class="hint">Choose the job role you want to apply for</span>
+            <select id="targetJobRole" class="form-control" onchange="handleJobRoleChange()" required>
+              <option value="">-- Select Target Job Role --</option>
+              <option value="Software Developer">Software Developer (Core Coding & Logic)</option>
+              <option value="Data Analyst">Data Analyst (Data, Excel & Insights)</option>
+              <option value="Web Developer">Web Developer (Front-end & Full-stack)</option>
+              <option value="UI/UX Designer">UI/UX Designer (Design & User Research)</option>
+              <option value="Business Analyst">Business Analyst (Processes & Requirements)</option>
+              <option value="Digital Marketing Executive">Digital Marketing Executive (Growth & Campaigns)</option>
+              <option value="Other">Other (Custom Role)</option>
+            </select>
+          </div>
+
+          <!-- Custom role field (hidden by default) -->
+          <div class="form-group" id="customRoleGroup" style="display: none;">
+            <label for="customJobRole">Type Your Custom Job Role *</label>
+            <input type="text" id="customJobRole" class="form-control" placeholder="e.g. Cloud Support Associate / Quality Assurance Tester">
+          </div>
+
+          <div class="form-group">
+            <label for="curriculumSubjects">Curriculum Subjects Studied</label>
+            <span class="hint">Type key subjects you have studied in college (separate with commas)</span>
+            <textarea id="curriculumSubjects" class="form-control" placeholder="e.g. Data Structures, Database Systems, Computer Networks, Operating Systems, Mathematics"></textarea>
+            <div class="tags-helper">
+              <span style="font-size: 0.8rem; color: var(--text-muted); align-self: center;">Quick Add:</span>
+              <button type="button" class="tag-chip" onclick="addSubjectTag('Data Structures & Algorithms')">+ Data Structures</button>
+              <button type="button" class="tag-chip" onclick="addSubjectTag('Database Management (DBMS)')">+ DBMS</button>
+              <button type="button" class="tag-chip" onclick="addSubjectTag('Operating Systems')">+ Operating Systems</button>
+              <button type="button" class="tag-chip" onclick="addSubjectTag('Computer Networks')">+ Computer Networks</button>
+              <button type="button" class="tag-chip" onclick="addSubjectTag('Software Engineering')">+ Software Engineering</button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="technicalSkills">Technical Skills Learned</label>
+              <span class="hint">Languages or concepts you have practiced</span>
+              <input type="text" id="technicalSkills" class="form-control" placeholder="e.g. C, C++, Java, Python, HTML/CSS, SQL">
+            </div>
+
+            <div class="form-group">
+              <label for="toolsStudied">Tools and Technologies Studied</label>
+              <span class="hint">Software tools you have used</span>
+              <input type="text" id="toolsStudied" class="form-control" placeholder="e.g. Git, GitHub, VS Code, Excel, MySQL, Figma">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="projectsExperience">Projects & Practical Academic Experience</label>
+            <span class="hint">Briefly describe mini projects, final year projects, or practical lab assignments</span>
+            <textarea id="projectsExperience" class="form-control" placeholder="e.g. Built a library management console application in C++; designed an e-commerce website prototype for college tech fest"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="internshipExperience">Internship or Work Experience (Optional)</label>
+            <span class="hint">Any prior internship, volunteer work, or part-time experience</span>
+            <textarea id="internshipExperience" class="form-control" placeholder="e.g. 1-month web development internship at local agency / None so far"></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; flex-wrap: wrap; gap: 14px;">
+            <p style="font-size: 0.88rem; margin: 0; color: var(--text-muted);">
+              🔒 Data stays private on your local browser. Nothing is sent to any server.
+            </p>
+            <button type="submit" class="btn btn-primary">
+              Proceed to Skill Self-Assessment →
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SKILL ASSESSMENT SECTION
+       ========================================================================== -->
+  <section class="section-padding" id="assessment-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">Step 2 of 3</span>
+        <h2>Self-Assessment Dashboard</h2>
+        <p class="lead-text">
+          Be completely honest with yourself! This rating helps us find the exact high-value gaps you need to bridge.
+        </p>
+        
+        <!-- Legend for beginners -->
+        <div style="display: inline-flex; gap: 14px; background-color: var(--white); padding: 10px 18px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); margin-top: 10px; flex-wrap: wrap; justify-content: center;">
+          <span style="font-size: 0.88rem;">🌱 <strong>Beginner:</strong> New to topic or need lots of guidance</span>
+          <span style="font-size: 0.88rem;">🌿 <strong>Intermediate:</strong> Know basics, need more hands-on practice</span>
+          <span style="font-size: 0.88rem;">🌳 <strong>Advanced:</strong> Confident to solve & explain independently</span>
+        </div>
+      </div>
+
+      <form id="skillAssessmentForm" onsubmit="handleAssessmentSubmit(event)">
+        
+        <!-- 1. Technical Skills -->
+        <div class="assessment-category-block">
+          <div class="category-header">
+            <span style="font-size: 1.6rem;">💻</span>
+            <div>
+              <h3>1. Technical Skills</h3>
+              <p style="margin: 0; font-size: 0.9rem;">Your foundation in computer science and role-specific concepts.</p>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Knowledge of Core Subjects</strong>
+              <span>Understanding fundamentals (algorithms, systems, logic)</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="tech_core" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="tech_core" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="tech_core" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Programming / Role-Specific Coding</strong>
+              <span>Writing clean code or handling role-specific technical tasks</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="tech_coding" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="tech_coding" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="tech_coding" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Tools and Technologies (Git, IDEs, etc.)</strong>
+              <span>Using industry-standard software tools and version control</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="tech_tools" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="tech_tools" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="tech_tools" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Practical Application of Concepts</strong>
+              <span>Building end-to-end working projects rather than memorizing definitions</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="tech_practical" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="tech_practical" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="tech_practical" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Professional Skills -->
+        <div class="assessment-category-block">
+          <div class="category-header">
+            <span style="font-size: 1.6rem;">🤝</span>
+            <div>
+              <h3>2. Professional & Soft Skills</h3>
+              <p style="margin: 0; font-size: 0.9rem;">Essential workplace skills that make you an effective team member.</p>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Communication Skills</strong>
+              <span>Explaining ideas clearly in English or professional discussions</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="prof_comm" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="prof_comm" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="prof_comm" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Problem-Solving Ability</strong>
+              <span>Breaking down an unfamiliar problem into step-by-step logic</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="prof_problem" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="prof_problem" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="prof_problem" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Teamwork & Collaboration</strong>
+              <span>Working cooperatively with others on group tasks or projects</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="prof_team" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="prof_team" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="prof_team" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Critical Thinking</strong>
+              <span>Evaluating different options rather than guessing quickly</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="prof_critical" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="prof_critical" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="prof_critical" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Time Management</strong>
+              <span>Planning daily study tasks and finishing assignments on schedule</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="prof_time" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="prof_time" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="prof_time" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Job Interview Readiness -->
+        <div class="assessment-category-block">
+          <div class="category-header">
+            <span style="font-size: 1.6rem;">🎯</span>
+            <div>
+              <h3>3. Job Interview Readiness</h3>
+              <p style="margin: 0; font-size: 0.9rem;">Your confidence in presenting yourself in front of recruiters and technical leads.</p>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Self-Introduction (90-second pitch)</strong>
+              <span>Presenting your background, education, and passions smoothly</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="int_intro" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="int_intro" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="int_intro" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Technical Interview Preparation</strong>
+              <span>Solving coding or domain questions on a whiteboard or screen share</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="int_technical" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="int_technical" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="int_technical" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>HR Interview Preparation</strong>
+              <span>Answering behavioral questions ("Why should we hire you?", strengths)</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="int_hr" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="int_hr" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="int_hr" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Resume Preparation</strong>
+              <span>Having a clean 1-page resume highlighting projects and skills</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="int_resume" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="int_resume" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="int_resume" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Project Explanation</strong>
+              <span>Explaining problem, tech stack, contribution, and results of your project</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="int_project" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="int_project" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="int_project" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="skill-rating-item">
+            <div class="skill-info">
+              <strong>Confidence in Answering Questions</strong>
+              <span>Managing anxiety, speaking at a calm pace, and thinking aloud</span>
+            </div>
+            <div class="rating-options">
+              <label class="rating-label">
+                <input type="radio" name="int_confidence" value="1" required checked>
+                <span class="tier-name">🌱 Beginner</span>
+                <span class="tier-desc">Need improvement</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="int_confidence" value="2">
+                <span class="tier-name">🌿 Intermediate</span>
+                <span class="tier-desc">Learning / Fair</span>
+              </label>
+              <label class="rating-label">
+                <input type="radio" name="int_confidence" value="3">
+                <span class="tier-name">🌳 Advanced</span>
+                <span class="tier-desc">Confident</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+          <button type="submit" class="btn btn-primary" style="padding: 16px 36px; font-size: 1.15rem;">
+            📊 Analyze My Skills & Generate My Plan
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SKILL GAP ANALYSIS DASHBOARD
+       ========================================================================== -->
+  <section class="section-padding" id="analysis-section" style="display: none; background-color: var(--white); border-top: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">Step 3 of 3</span>
+        <h2>Your Skill Gap Analysis Dashboard</h2>
+        <p class="lead-text" id="dashboardRoleSubtitle">
+          Here is how your current preparation matches industry expectations for your target role.
+        </p>
+      </div>
+
+      <!-- Hero score & status box -->
+      <div class="results-hero-card">
+        <div class="results-hero-grid">
+          <div class="score-circle-wrapper">
+            <div class="score-number" id="readinessScoreVal">0%</div>
+            <div class="score-label">Readiness</div>
+          </div>
+
+          <div class="results-summary">
+            <div class="badge-pill" style="background: rgba(255,255,255,0.2); color: #FFFFFF; border: none;" id="stageStatusBadge">
+              🌱 Sprouting Learner
+            </div>
+            <h2 id="studentGreetingHeading">Career Readiness Overview</h2>
+            <p id="studentAnalysisFeedback">
+              You have established basic academic fundamentals. By strengthening missing practical tools and interview practice, you can significantly boost your hiring potential.
+            </p>
+
+            <div class="results-kpi-row">
+              <div class="kpi-card">
+                <div class="kpi-val" id="kpiStrongCount">0</div>
+                <div class="kpi-lbl">Strengths Ready</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-val" id="kpiGapCount">0</div>
+                <div class="kpi-lbl">Skill Gaps to Close</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-val" id="kpiMissingCurriculumCount">0</div>
+                <div class="kpi-lbl">Missing in Syllabus</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-val" id="kpiPriorityCount">0</div>
+                <div class="kpi-lbl">High Priority Tasks</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Educational guidance disclaimer -->
+      <div style="background-color: var(--light-green); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 14px 18px; margin-bottom: 24px;">
+        <p style="margin: 0; font-size: 0.88rem; color: var(--primary-forest);">
+          💡 <strong>Notice:</strong> This analysis provides educational guidance based on your self-assessment and predefined industry benchmarks. It is not an official certification, recruitment test, or employment guarantee.
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="analysis-tabs">
+        <button class="tab-btn active" onclick="filterGapCards('all', this)">All Skills (Overview)</button>
+        <button class="tab-btn" onclick="filterGapCards('high', this)">High Priority Gaps 🔥</button>
+        <button class="tab-btn" onclick="filterGapCards('technical', this)">Technical & Tools 💻</button>
+        <button class="tab-btn" onclick="filterGapCards('interview', this)">Interview Readiness 🎯</button>
+        <button class="tab-btn" onclick="filterGapCards('strengths', this)">My Strengths ✅</button>
+      </div>
+
+      <!-- Dynamic Skill Gap Cards Container -->
+      <div class="gap-cards-grid" id="gapCardsContainer">
+        <!-- Rendered via JavaScript -->
+      </div>
+
+      <!-- Visual Benchmark Chart -->
+      <div class="card" style="margin-top: 30px;">
+        <h3>📊 Preparedness vs Industry Expectation</h3>
+        <p style="font-size: 0.9rem;">
+          The green bar shows your self-rated level. The vertical marker indicates the standard benchmark employers expect for entry-level roles.
+        </p>
+        <div id="visualBarChartContainer" style="display: flex; flex-direction: column; gap: 14px; margin-top: 18px;">
+          <!-- Rendered via JavaScript -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FREE COURSE RECOMMENDATIONS
+       ========================================================================== -->
+  <section class="section-padding" id="courses-section" style="display: none; background-color: var(--warm-cream);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">Free Educational Resources</span>
+        <h2>Recommended Free Courses & Practice Tools</h2>
+        <p class="lead-text">
+          Zero cost, reputable, and open to anyone. We only recommend trusted educational platforms with direct, working links.
+        </p>
+      </div>
+
+      <div class="courses-grid" id="coursesGridContainer">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PERSONALIZED LEARNING ROADMAP
+       ========================================================================== -->
+  <section class="section-padding" id="roadmap-section" style="display: none; background-color: var(--white); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">Actionable 4-Week Plan</span>
+        <h2>Your Personalized Learning Roadmap</h2>
+        <p class="lead-text">
+          A realistic, step-by-step 4-week growth path designed for a college student's daily schedule. Check off tasks as you finish them!
+        </p>
+      </div>
+
+      <!-- Progress Tracking Box -->
+      <div class="roadmap-progress-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <strong style="color: var(--primary-forest);">Roadmap Completion Progress</strong>
+          <span id="roadmapProgressPct" style="font-weight: 700; color: var(--primary-forest);">0% Complete (0 / 0 Tasks)</span>
+        </div>
+        <div class="bar-track" style="height: 12px;">
+          <div class="bar-fill-user" id="roadmapProgressBar" style="width: 0%; background-color: var(--primary-leaf);"></div>
+        </div>
+      </div>
+
+      <div class="roadmap-timeline" id="roadmapTimelineContainer">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       INTERVIEW PREPARATION CENTRE
+       ========================================================================== -->
+  <section class="section-padding" id="interview-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">Job Interview Centre</span>
+        <h2>Interview Preparation & Rehearsal Hub</h2>
+        <p class="lead-text">
+          Interviews are not tests of memory—they are structured conversations. Learn proven frameworks and practice your answers in private.
+        </p>
+      </div>
+
+      <div class="interview-grid">
+        <!-- Left Column: Frameworks & Guidelines -->
+        <div>
+          <div class="card" style="margin-bottom: 20px;">
+            <h3>⭐ The STAR Method for Behavioral Questions</h3>
+            <p style="font-size: 0.9rem;">
+              When interviewers ask situational questions ("Tell me about a time you solved a problem"), use STAR:
+            </p>
+
+            <div class="star-step-box">
+              <strong>S - Situation:</strong> Set the context briefly (e.g. "During our 3rd-year semester project...")
+            </div>
+            <div class="star-step-box">
+              <strong>T - Task:</strong> What was your goal or challenge? (e.g. "We needed to build a database within 2 weeks...")
+            </div>
+            <div class="star-step-box">
+              <strong>A - Action:</strong> What specific steps did you take? Focus on "I", not just "we".
+            </div>
+            <div class="star-step-box">
+              <strong>R - Result:</strong> What was the outcome or lesson learned? (e.g. "We finished on time with 0 errors.")
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>📂 6-Step Project Explanation Framework</h3>
+            <p style="font-size: 0.9rem;">
+              Recruiters love hearing you explain your academic or personal projects in this exact sequence:
+            </p>
+            <ol style="padding-left: 20px; font-size: 0.95rem; color: var(--text-dark); display: flex; flex-direction: column; gap: 8px;">
+              <li><strong>1. Problem:</strong> What real-world issue does your project solve?</li>
+              <li><strong>2. Objective:</strong> What was the main purpose of your application?</li>
+              <li><strong>3. Tools & Skills:</strong> Which languages, databases, and tools did you use?</li>
+              <li><strong>4. My Contribution:</strong> Exactly what part of the project did YOU code or design?</li>
+              <li><strong>5. Result:</strong> Did it run successfully? How many features worked?</li>
+              <li><strong>6. What I Learned:</strong> What challenge did you face and overcome?</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Practice Rehearsal Mode -->
+        <div class="interactive-rehearsal-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <span class="badge-pill">🎙️ Mock Interview Practice</span>
+            <div class="timer-badge" id="rehearsalTimerDisplay">
+              ⏱️ 01:30
+            </div>
+          </div>
+
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+            Question <span id="currentQuestionNum">1</span> of <span id="totalQuestionsNum">7</span>
+          </p>
+
+          <h3 id="currentQuestionText" style="color: var(--primary-forest); min-height: 56px;">
+            1. Tell me about yourself.
+          </h3>
+
+          <!-- Guidance / Framework Hint -->
+          <div style="background-color: var(--light-green); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 16px;">
+            <strong style="font-size: 0.85rem; color: var(--primary-forest); display: block;">💡 How to structure your answer:</strong>
+            <p id="currentQuestionGuidance" style="font-size: 0.85rem; margin: 0; color: var(--text-dark);">
+              Give a 90-second summary: 1) Who you are & your degree; 2) What technical skills/topics you enjoy; 3) A quick project highlight; 4) Why you are eager for this role.
+            </p>
+          </div>
+
+          <!-- Practice answer textarea -->
+          <div class="form-group">
+            <label for="practiceAnswerInput" style="font-size: 0.9rem;">Type or jot down your answer notes here:</label>
+            <textarea id="practiceAnswerInput" class="form-control" rows="5" placeholder="Draft your answer bullet points here to practice aloud..."></textarea>
+          </div>
+
+          <!-- Controls -->
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; gap: 6px;">
+              <button type="button" class="btn btn-outline btn-small" id="btnPrevQuestion" onclick="navigateInterviewQuestion(-1)">← Previous</button>
+              <button type="button" class="btn btn-primary btn-small" id="btnNextQuestion" onclick="navigateInterviewQuestion(1)">Next Question →</button>
+            </div>
+
+            <div style="display: flex; gap: 6px;">
+              <button type="button" class="btn btn-secondary btn-small" id="btnToggleTimer" onclick="toggleTimer()">▶ Start Timer</button>
+              <button type="button" class="btn btn-outline btn-small" onclick="resetTimer()">Reset</button>
+            </div>
+          </div>
+
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 14px; margin-bottom: 0;">
+            * Self-guided rehearsal space. We do not record audio or use automated AI judgment—this is your private practice space.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PERSONAL NOTES FOR JOB IMPROVEMENT
+       ========================================================================== -->
+  <section class="section-padding" id="notes-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">Local Storage & Printable Plan</span>
+        <h2>My Personal Notes & Action Plan</h2>
+        <p class="lead-text">
+          Your personal space to track career goals, project ideas, and interview answers. Automatically saved in your browser and printable anytime.
+        </p>
+      </div>
+
+      <div class="notes-toolbar">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 1.3rem;">📝</span>
+          <strong style="color: var(--primary-forest);">Editable Career Notebook</strong>
+          <span style="font-size: 0.82rem; color: var(--text-muted);">(Auto-saves locally)</span>
+        </div>
+
+        <div class="notes-actions">
+          <button type="button" class="btn btn-primary btn-small" onclick="savePersonalNotes()">
+            💾 Save Notes
+          </button>
+          <button type="button" class="btn btn-secondary btn-small" onclick="downloadNotes()">
+            📥 Download Notes (.txt)
+          </button>
+          <button type="button" class="btn btn-outline btn-small" onclick="printNotes()">
+            🖨️ Print Notes
+          </button>
+          <button type="button" class="btn btn-danger btn-small" onclick="confirmClearNotes()">
+            🗑️ Clear Notes
+          </button>
+        </div>
+      </div>
+
+      <textarea id="personalNotesArea" class="notes-editor" placeholder="Click 'Analyze My Skills' above to automatically generate a personalized career notes template, or start typing your goals right here..."></textarea>
+      
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 0.85rem; color: var(--text-muted);">
+        <span id="notesLastSavedTime">Status: Ready</span>
+        <span>Stored securely in your browser's localStorage</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" id="about-section" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="color: var(--white); margin-bottom: 14px;">
+            🌱 Skill<span style="color: #9CD88E;">Sprout</span>
+          </div>
+          <p>
+            SkillSprout is an accessible, beginner-friendly platform designed to help college students and job seekers identify their skill gaps, prepare for interviews, and build employability confidence.
+          </p>
+          <p style="font-size: 0.85rem; color: #A9CDAF;">
+            Designed especially for rural learners and first-generation college graduates.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#curriculum-section">Curriculum & Role Input</a></li>
+            <li><a href="#assessment-section">Skill Assessment</a></li>
+            <li><a href="#analysis-section">Gap Analysis Dashboard</a></li>
+            <li><a href="#roadmap-section">4-Week Roadmap</a></li>
+            <li><a href="#interview-section">Interview Prep Centre</a></li>
+            <li><a href="#notes-section">My Personal Notes</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Free Learning Platforms</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.freecodecamp.org/learn" target="_blank" rel="noopener noreferrer">freeCodeCamp (Coding & Web) ↗</a></li>
+            <li><a href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer">MDN Web Docs (Documentation) ↗</a></li>
+            <li><a href="https://cs50.harvard.edu/x/" target="_blank" rel="noopener noreferrer">CS50 OpenCourseWare ↗</a></li>
+            <li><a href="https://www.kaggle.com/learn" target="_blank" rel="noopener noreferrer">Kaggle Learn (Data Science) ↗</a></li>
+            <li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn (Tools & Cloud) ↗</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Required Disclaimer -->
+      <div class="footer-disclaimer-box">
+        <p>
+          <strong>Official Disclaimer:</strong> SkillSprout provides educational guidance based on user input and predefined recommendations. It is not an official certification, professional recruitment assessment, or guarantee of employment.
+        </p>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          SkillSprout © Local Edition. Built with pure HTML, CSS, and vanilla JavaScript. 100% Free, Private, and Offline-ready.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification element -->
+  <div class="toast-notice" id="toastNotice" role="status" aria-live="polite">
+    <span id="toastIcon">🌱</span>
+    <span id="toastMessage">Notes saved successfully!</span>
+  </div>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT LOGIC
+       Documented for a first-year college student
+       ========================================================================== -->
+  <script>
+    /*
+      ==========================================================================
+      SKILLSPROUT SCRIPT
+      Author: Pair Programming Assistant
+      Purpose: Handles form interactions, gap analysis rules, roadmap creation,
+               notes persistence via localStorage, and mock interview practice.
+      ==========================================================================
+    */
+
+    // -------------------------------------------------------------------------
+    // 1. DATA STRUCTURES & PREDEFINED JOB ROLE PROFILES
+    // -------------------------------------------------------------------------
+    /*
+      College explanation:
+      We define 'standard benchmarks' for each job role.
+      When a student selects a role (e.g. "Web Developer"), we compare their self-rated
+      scores (1 = Beginner, 2 = Intermediate, 3 = Advanced) against these required benchmarks.
+    */
+    const JOB_PROFILES = {
+      "Software Developer": {
+        title: "Software Developer",
+        requiredCurriculum: ["Data Structures & Algorithms", "DBMS", "Operating Systems", "Object Oriented Programming"],
+        requiredTools: ["Git", "GitHub", "VS Code", "Terminal"],
+        coreSkills: [
+          { key: "tech_core", name: "Core CS Fundamentals (DSA & Logic)", benchmark: 2, why: "Crucial for clearing written coding rounds and algorithmic interview questions." },
+          { key: "tech_coding", name: "Programming Proficiency (Java/Python/C++)", benchmark: 2, why: "Expected to write bug-free code with basic edge-case handling." },
+          { key: "tech_tools", name: "Version Control (Git/GitHub)", benchmark: 2, why: "Required by development teams to collaborate and track changes in codebases." },
+          { key: "tech_practical", name: "End-to-End Project Application", benchmark: 2, why: "Shows recruiters you can build functional software rather than just memorizing syntax." },
+          { key: "prof_problem", name: "Analytical Problem Solving", benchmark: 2, why: "Software engineering is fundamentally breaking down complex problems into small solvable parts." },
+          { key: "prof_comm", name: "Technical Communication", benchmark: 2, why: "You must be able to explain how your code works to teammates and non-technical stakeholders." },
+          { key: "int_technical", name: "Technical Interview & Live Coding", benchmark: 2, why: "Standard format for software developer campus and off-campus placements." },
+          { key: "int_project", name: "Project Explanation Framework", benchmark: 2, why: "Interviewers always ask in-depth questions about what you built and how." }
+        ],
+        miniProject: {
+          title: "CRUD Task Manager or Student Directory with Database",
+          desc: "Create an application that performs Create, Read, Update, and Delete operations connected to a local SQLite or MySQL database with clean modular code."
+        },
+        courses: [
+          {
+            title: "CS50: Introduction to Computer Science",
+            platform: "Harvard OpenCourseWare",
+            desc: "The gold standard free introduction to computer science, memory, data structures, and algorithms.",
+            url: "https://cs50.harvard.edu/x/",
+            type: "OpenCourseWare"
+          },
+          {
+            title: "Scientific Computing with Python",
+            platform: "freeCodeCamp",
+            desc: "Comprehensive free curriculum covering Python fundamentals, data structures, and algorithmic problems.",
+            url: "https://www.freecodecamp.org/learn/scientific-computing-with-python/",
+            type: "Hands-on Practice"
+          },
+          {
+            title: "Version Control with Git & GitHub",
+            platform: "Microsoft Learn",
+            desc: "Official self-paced beginner module to learn repository creation, branches, commits, and pull requests.",
+            url: "https://learn.microsoft.com/training/modules/intro-to-git/",
+            type: "Interactive Learning"
+          }
+        ]
+      },
+
+      "Web Developer": {
+        title: "Web Developer",
+        requiredCurriculum: ["Web Development Basics", "Database Systems", "Computer Networks"],
+        requiredTools: ["Git", "VS Code", "Browser DevTools", "npm"],
+        coreSkills: [
+          { key: "tech_coding", name: "HTML, CSS & JavaScript Essentials", benchmark: 3, why: "The foundational triumvirate of all modern internet user interfaces." },
+          { key: "tech_tools", name: "Version Control & DevTools", benchmark: 2, why: "Inspecting CSS, debugging JavaScript network requests, and managing branches." },
+          { key: "tech_practical", name: "Responsive Portfolio Project", benchmark: 2, why: "Hiring managers hire web developers based on live websites they can click and test." },
+          { key: "prof_comm", name: "Clear Idea Presentation", benchmark: 2, why: "Web developers work closely with designers, product managers, and clients." },
+          { key: "int_project", name: "Project Architecture Explanation", benchmark: 2, why: "You will be asked to explain state management, API calls, and styling decisions." }
+        ],
+        miniProject: {
+          title: "Responsive Multi-Page Portfolio with Live Interactive App",
+          desc: "Build a responsive personal website hosting a JavaScript tool (like a budget planner or weather dashboard) deployed on GitHub Pages."
+        },
+        courses: [
+          {
+            title: "Responsive Web Design Certification",
+            platform: "freeCodeCamp",
+            desc: "300 hours of free hands-on lessons covering modern HTML5, CSS3, Flexbox, CSS Grid, and responsive principles.",
+            url: "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+            type: "Certification Path"
+          },
+          {
+            title: "MDN Web Docs: Learn Web Development",
+            platform: "Mozilla MDN",
+            desc: "The industry reference guide for web standards, HTML structure, accessibility, and modern JavaScript.",
+            url: "https://developer.mozilla.org/en-US/docs/Learn",
+            type: "Documentation & Tutorials"
+          },
+          {
+            title: "JavaScript Algorithms & Data Structures",
+            platform: "freeCodeCamp",
+            desc: "Learn core JavaScript syntax, DOM manipulation fundamentals, and programmatic problem-solving.",
+            url: "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/",
+            type: "Interactive Code Exercises"
+          }
+        ]
+      },
+
+      "Data Analyst": {
+        title: "Data Analyst",
+        requiredCurriculum: ["Statistics & Probability", "Database Management (SQL)", "Mathematics"],
+        requiredTools: ["Excel / Google Sheets", "SQL", "Python / R", "Power BI / Tableau"],
+        coreSkills: [
+          { key: "tech_core", name: "Statistics, Probability & Business Metrics", benchmark: 2, why: "Essential for avoiding bias and interpreting metrics like averages, percentiles, and correlations." },
+          { key: "tech_tools", name: "SQL & Advanced Spreadsheet Analysis", benchmark: 3, why: "90% of daily data analyst workflows require writing SQL queries to extract and clean data." },
+          { key: "tech_practical", name: "Data Cleaning & Exploratory Analysis", benchmark: 2, why: "Raw data is always messy; employers look for candidates who can transform raw numbers into insights." },
+          { key: "prof_critical", name: "Critical Thinking & Storytelling with Data", benchmark: 2, why: "Charts are useless unless you can explain what business decision managers should take." },
+          { key: "int_intro", name: "Analytical Problem Presentation", benchmark: 2, why: "Interviews often evaluate your thought process in diagnosing why sales or traffic dropped." }
+        ],
+        miniProject: {
+          title: "Exploratory Data Analysis (EDA) on an Open Dataset",
+          desc: "Analyze a public dataset (e.g., student performance or retail sales) from Kaggle using SQL/Excel, presenting 4 actionable insights and visual charts."
+        },
+        courses: [
+          {
+            title: "Kaggle Learn: Intro to SQL & Data Analysis",
+            platform: "Kaggle",
+            desc: "Bite-sized, practical tutorials to write real SQL queries and run data analysis directly in your browser.",
+            url: "https://www.kaggle.com/learn",
+            type: "Hands-on Practice"
+          },
+          {
+            title: "Microsoft Learn: Work with Data in Power BI / Excel",
+            platform: "Microsoft Learn",
+            desc: "Official self-paced lessons on modeling data, creating visual charts, and calculating metrics.",
+            url: "https://learn.microsoft.com/training/paths/model-data-power-bi/",
+            type: "Industry Standard"
+          },
+          {
+            title: "Data Analysis with Python",
+            platform: "freeCodeCamp",
+            desc: "Learn how to use Python libraries such as Numpy and Pandas to read, clean, and visualize large CSV files.",
+            url: "https://www.freecodecamp.org/learn/data-analysis-with-python/",
+            type: "Course & Projects"
+          }
+        ]
+      },
+
+      "UI/UX Designer": {
+        title: "UI/UX Designer",
+        requiredCurriculum: ["Human-Computer Interaction", "Graphic Design Basics", "Design Thinking"],
+        requiredTools: ["Figma", "Pen & Paper Wireframing", "Miro"],
+        coreSkills: [
+          { key: "tech_tools", name: "Figma UI Prototyping & Design Systems", benchmark: 2, why: "Figma is the universal tool used across design agencies and tech companies today." },
+          { key: "tech_practical", name: "Case Study & Usability Testing", benchmark: 2, why: "Designers are hired on case studies explaining user research and iteration, not pretty pictures." },
+          { key: "prof_comm", name: "Empathy & User Interviewing", benchmark: 2, why: "Understanding pain points from everyday users, especially rural or non-technical audiences." },
+          { key: "int_project", name: "Design Decisions Walkthrough", benchmark: 3, why: "Interviews center around defending why you chose specific typography, flows, and layouts." }
+        ],
+        miniProject: {
+          title: "Mobile App Redesign Case Study for a Public Service",
+          desc: "Create wireframes and a clickable Figma prototype redesigning a local utility or bus schedule service for easy use by elderly or rural citizens."
+        },
+        courses: [
+          {
+            title: "Figma Official Learn Hub",
+            platform: "Figma",
+            desc: "Free video tutorials and interactive Figma community files covering auto-layout, components, and prototyping.",
+            url: "https://help.figma.com/hc/en-us/categories/360002042553",
+            type: "Official Tutorials"
+          },
+          {
+            title: "Google UX Design Foundations (Grow with Google)",
+            platform: "Grow with Google",
+            desc: "Fundamental overview of design thinking, user persona creation, accessibility, and user testing.",
+            url: "https://grow.google/certificates/ux-design/",
+            type: "Foundational Overview"
+          }
+        ]
+      },
+
+      "Business Analyst": {
+        title: "Business Analyst",
+        requiredCurriculum: ["Software Engineering", "Business Management", "Database Systems"],
+        requiredTools: ["Excel", "Jira / Trello", "Flowcharting (Lucidchart / Draw.io)", "SQL"],
+        coreSkills: [
+          { key: "prof_problem", name: "Requirements Gathering & Process Mapping", benchmark: 2, why: "Translating ambiguous client business wishes into clear technical specifications for engineers." },
+          { key: "prof_comm", name: "Stakeholder Communication & Documentation", benchmark: 3, why: "Writing User Stories and Business Requirement Documents (BRDs)." },
+          { key: "tech_core", name: "Understanding Software Development Life Cycle (SDLC)", benchmark: 2, why: "Collaborating with developers during Agile sprints." }
+        ],
+        miniProject: {
+          title: "Business Requirement Document (BRD) & Flowchart",
+          desc: "Pick an everyday process (like a college course registration system) and write a complete requirements document with swimlane diagrams and user stories."
+        },
+        courses: [
+          {
+            title: "Agile & Scrum Fundamentals",
+            platform: "Microsoft Learn",
+            desc: "Learn how modern software teams organize projects, sprints, backlogs, and user stories.",
+            url: "https://learn.microsoft.com/training/modules/manage-agile-software-delivery/",
+            type: "Self-Paced Training"
+          },
+          {
+            title: "Database Management and SQL Basics",
+            platform: "freeCodeCamp",
+            desc: "Understand relational databases to verify data and support business decisions.",
+            url: "https://www.freecodecamp.org/learn/relational-database/",
+            type: "Practice Exercises"
+          }
+        ]
+      },
+
+      "Digital Marketing Executive": {
+        title: "Digital Marketing Executive",
+        requiredCurriculum: ["Marketing Principles", "Communication", "Basic Analytics"],
+        requiredTools: ["Google Analytics", "Canva", "Email Platforms", "SEO Tools"],
+        coreSkills: [
+          { key: "prof_comm", name: "Copywriting & Audience Engagement", benchmark: 3, why: "Crafting clear, engaging headlines and social posts that convince users to act." },
+          { key: "tech_tools", name: "Analytics & Campaign Metrics", benchmark: 2, why: "Measuring Click-Through Rate (CTR), Conversion Rate, and Return on Ad Spend (ROAS)." },
+          { key: "prof_critical", name: "Market Research & Competitor Analysis", benchmark: 2, why: "Identifying consumer segments and positioning products effectively." }
+        ],
+        miniProject: {
+          title: "30-Day Organic Content & SEO Strategy Plan",
+          desc: "Build a comprehensive keyword research plan and 10 sample educational social posts for a local agricultural or small college business."
+        },
+        courses: [
+          {
+            title: "Fundamentals of Digital Marketing",
+            platform: "Google Digital Garage",
+            desc: "Learn SEO, search advertising, social media marketing, and web analytics with self-paced free modules.",
+            url: "https://grow.google/intl/ALL_in/certificates/digital-marketing-ecommerce/",
+            type: "Foundations"
+          },
+          {
+            title: "HubSpot Academy Free Marketing Courses",
+            platform: "HubSpot Academy",
+            desc: "Free video certifications in inbound marketing, email marketing, and content strategy.",
+            url: "https://academy.hubspot.com/courses",
+            type: "Free Certification"
+          }
+        ]
+      },
+
+      "Other": {
+        title: "General Tech & Knowledge Professional",
+        requiredCurriculum: ["Core Academic Subjects", "Computer Fundamentals"],
+        requiredTools: ["Git", "Office Productivity (Excel/Word)", "Internet Research"],
+        coreSkills: [
+          { key: "tech_core", name: "Core Academic Fundamentals", benchmark: 2, why: "Baseline domain understanding for your chosen specialization." },
+          { key: "tech_tools", name: "Digital Tools & Workplace Software", benchmark: 2, why: "Productivity and communication tools used in modern offices." },
+          { key: "prof_comm", name: "Professional Communication", benchmark: 2, why: "Speaking clearly and writing professional emails." },
+          { key: "int_intro", name: "Self-Introduction & Confidence", benchmark: 2, why: "Making a solid first impression on any interview panel." }
+        ],
+        miniProject: {
+          title: "Comprehensive Domain Portfolio & Project Document",
+          desc: "Create an organized dossier of your academic assignments, a problem you analyzed, and a presentation slide deck."
+        },
+        courses: [
+          {
+            title: "CS50 Computer Science OpenCourseWare",
+            platform: "Harvard University",
+            desc: "General foundational computer science and computational thinking curriculum.",
+            url: "https://cs50.harvard.edu/x/",
+            type: "OpenCourseWare"
+          },
+          {
+            title: "Career Development & Professional Skills",
+            platform: "Microsoft Learn",
+            desc: "Modules focusing on resume writing, technical interviews, and teamwork.",
+            url: "https://learn.microsoft.com/training/",
+            type: "Professional Essentials"
+          }
+        ]
+      }
+    };
+
+    // -------------------------------------------------------------------------
+    // 2. INTERVIEW PREP QUESTIONS DATA
+    // -------------------------------------------------------------------------
+    const INTERVIEW_QUESTIONS = [
+      {
+        id: 1,
+        question: "1. Tell me about yourself.",
+        guidance: "Structure (90 seconds): 1) Name, college, and degree; 2) What domain or technical areas you are passionate about; 3) Highlight 1 proud project or learning achievement; 4) Why you are enthusiastic to start in this role.",
+        starterNotes: "My name is [Name], currently pursuing [Degree] in [Branch] at [College]..."
+      },
+      {
+        id: 2,
+        question: "2. What are your greatest strengths and weaknesses?",
+        guidance: "Strength: Pick a real job-relevant strength (e.g. disciplined debugging or team collaboration) with an example. Weakness: Pick a non-fatal habit you are actively fixing (e.g., 'I used to struggle with public speaking, so I joined college presentation seminars to practice').",
+        starterNotes: "Strength: I am very persistent with troubleshooting... Weakness: I sometimes hesitate to ask for help early, but I am learning to..."
+      },
+      {
+        id: 3,
+        question: "3. Explain your final-year or academic project.",
+        guidance: "Use the 6-step project framework: 1) What real problem did it address? 2) Objective, 3) Tools used, 4) What YOU individually wrote or contributed, 5) The final outcome, 6) What technical lesson you learned.",
+        starterNotes: "In our project, we addressed [Problem]. We chose [Tools] because... My responsibility was to build..."
+      },
+      {
+        id: 4,
+        question: "4. Why should we hire you over other candidates?",
+        guidance: "Do not put down other candidates. Highlight your enthusiasm to learn quickly, your solid grasp of fundamentals, your practical projects, and your dedication to being a dependable team contributor.",
+        starterNotes: "You should hire me because I have built a solid foundation in [Core Skills], demonstrated practical initiative through my project [Project Name], and have a strong commitment to learning fast..."
+      },
+      {
+        id: 5,
+        question: "5. Describe a challenging problem you faced and how you solved it.",
+        guidance: "Use the STAR method: Situation (what went wrong), Task (what needed fixing), Action (how you searched docs, tested hypotheses, or collaborated), Result (how it resolved).",
+        starterNotes: "Situation: While developing [Project], we encountered an issue where [Error/Problem]... Action: I spent time isolating the bug by... Result: Successfully resolved..."
+      },
+      {
+        id: 6,
+        question: "6. What technical skills have you learned outside of your syllabus?",
+        guidance: "Interviewers ask this to test your self-motivation. Mention tools like Git, freeCodeCamp modules, personal side-projects, or exploring modern APIs.",
+        starterNotes: "While our syllabus covered core concepts like [Subject], I realized the industry expects [Skill/Tool]. So I took self-paced courses on [Platform] to build..."
+      },
+      {
+        id: 7,
+        question: "7. What would you like to improve about yourself in the next 6 months?",
+        guidance: "Show ambition and coachability. Mention learning a specific tool relevant to your dream role and becoming more fluent in technical presentations.",
+        starterNotes: "Over the next 6 months, my primary goal is to master [Specific Tool/Skill] and build two production-quality projects that follow industry best practices..."
+      }
+    ];
+
+    // Current State Management
+    let currentInterviewIndex = 0;
+    let timerSeconds = 90;
+    let timerInterval = null;
+    let isTimerRunning = false;
+    let userCurriculumData = {};
+    let userAssessmentRatings = {};
+    let calculatedGaps = [];
+
+    // -------------------------------------------------------------------------
+    // 3. INITIALIZATION & LOCALSTORAGE RESTORATION
+    // -------------------------------------------------------------------------
+    /*
+      When the browser loads index.html, we check if the user had previously
+      saved personal notes or roadmap checkboxes in localStorage.
+    */
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedNotesFromStorage();
+      renderInterviewQuestion(0);
+      setupMobileNavigation();
+    });
+
+    // Mobile nav toggle
+    function setupMobileNavigation() {
+      const toggleBtn = document.getElementById('mobileMenuToggle');
+      const navLinks = document.getElementById('navLinksList');
+      if (toggleBtn && navLinks) {
+        toggleBtn.addEventListener('click', () => {
+          navLinks.classList.toggle('mobile-open');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('mobile-open');
+          });
+        });
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. DEMO PROFILE HELPER (Beginner Friendly)
+    // -------------------------------------------------------------------------
+    document.getElementById('btnFillDemoData').addEventListener('click', () => {
+      document.getElementById('studentName').value = "Pooja Sharma";
+      document.getElementById('degreeName').value = "B.Tech in Engineering";
+      document.getElementById('branchName').value = "Computer Science & Engineering";
+      document.getElementById('studyYear').value = "3rd Year";
+      document.getElementById('targetJobRole').value = "Web Developer";
+      document.getElementById('curriculumSubjects').value = "Data Structures, Database Management, Operating Systems, Computer Networks";
+      document.getElementById('technicalSkills').value = "C++, Java, basic HTML & CSS";
+      document.getElementById('toolsStudied').value = "VS Code, MySQL";
+      document.getElementById('projectsExperience').value = "College student records console application in C++; a static college festival webpage.";
+      document.getElementById('internshipExperience').value = "None yet (focused on college academics)";
+      
+      // Auto-set custom role display
+      handleJobRoleChange();
+
+      // Smooth scroll to form
+      document.getElementById('curriculum-section').scrollIntoView({ behavior: 'smooth' });
+      showToast("🌱 Demo profile loaded! You can now adjust or proceed.");
+    });
+
+    // Helper for custom role dropdown
+    function handleJobRoleChange() {
+      const roleSelect = document.getElementById('targetJobRole');
+      const customGroup = document.getElementById('customRoleGroup');
+      if (roleSelect.value === 'Other') {
+        customGroup.style.display = 'block';
+        document.getElementById('customJobRole').setAttribute('required', 'true');
+      } else {
+        customGroup.style.display = 'none';
+        document.getElementById('customJobRole').removeAttribute('required');
+      }
+    }
+
+    // Quick tag chips helper for subjects
+    function addSubjectTag(subject) {
+      const area = document.getElementById('curriculumSubjects');
+      if (area.value.trim() === '') {
+        area.value = subject;
+      } else if (!area.value.includes(subject)) {
+        area.value += ", " + subject;
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 5. CURRICULUM FORM SUBMISSION
+    // -------------------------------------------------------------------------
+    function handleCurriculumSubmit(event) {
+      event.preventDefault();
+
+      // Read form data
+      const roleSelect = document.getElementById('targetJobRole').value;
+      const customRole = document.getElementById('customJobRole').value;
+      const targetRole = (roleSelect === 'Other' && customRole.trim() !== '') ? customRole.trim() : roleSelect;
+
+      userCurriculumData = {
+        name: document.getElementById('studentName').value.trim() || "Student",
+        degree: document.getElementById('degreeName').value.trim(),
+        branch: document.getElementById('branchName').value.trim(),
+        year: document.getElementById('studyYear').value,
+        role: targetRole,
+        roleKey: JOB_PROFILES[roleSelect] ? roleSelect : "Other",
+        subjects: document.getElementById('curriculumSubjects').value.toLowerCase(),
+        technical: document.getElementById('technicalSkills').value.toLowerCase(),
+        tools: document.getElementById('toolsStudied').value.toLowerCase(),
+        projects: document.getElementById('projectsExperience').value.trim(),
+        internship: document.getElementById('internshipExperience').value.trim()
+      };
+
+      // Smooth scroll to next section
+      document.getElementById('assessment-section').scrollIntoView({ behavior: 'smooth' });
+      showToast("✅ Details recorded! Now rate your current skill confidence.");
+    }
+
+    // -------------------------------------------------------------------------
+    // 6. SKILL ASSESSMENT SUBMIT & GAP ANALYSIS ENGINE
+    // -------------------------------------------------------------------------
+    function handleAssessmentSubmit(event) {
+      event.preventDefault();
+
+      // Ensure curriculum was submitted or use defaults
+      if (!userCurriculumData.roleKey) {
+        userCurriculumData = {
+          name: document.getElementById('studentName').value.trim() || "Student",
+          degree: document.getElementById('degreeName').value.trim() || "Degree Student",
+          branch: document.getElementById('branchName').value.trim() || "General",
+          year: document.getElementById('studyYear').value || "Final Year",
+          role: document.getElementById('targetJobRole').value || "Software Developer",
+          roleKey: document.getElementById('targetJobRole').value || "Software Developer",
+          subjects: document.getElementById('curriculumSubjects').value.toLowerCase(),
+          technical: document.getElementById('technicalSkills').value.toLowerCase(),
+          tools: document.getElementById('toolsStudied').value.toLowerCase(),
+          projects: document.getElementById('projectsExperience').value.trim(),
+          internship: document.getElementById('internshipExperience').value.trim()
+        };
+      }
+
+      // Read radio button ratings (1 = Beginner, 2 = Intermediate, 3 = Advanced)
+      const form = document.getElementById('skillAssessmentForm');
+      const formData = new FormData(form);
+      userAssessmentRatings = {};
+      for (const [key, value] of formData.entries()) {
+        userAssessmentRatings[key] = parseInt(value, 10);
+      }
+
+      // Execute rule-based gap analysis
+      runSkillGapAnalysis();
+
+      // Reveal dashboard, courses, and roadmap sections
+      document.getElementById('analysis-section').style.display = 'block';
+      document.getElementById('courses-section').style.display = 'block';
+      document.getElementById('roadmap-section').style.display = 'block';
+
+      // Smooth scroll to the results
+      document.getElementById('analysis-section').scrollIntoView({ behavior: 'smooth' });
+      showToast("🌱 Analysis complete! Review your readiness and action plan.");
+    }
+
+    /*
+      College explanation of the Analysis Engine:
+      1. We look up the target role profile from JOB_PROFILES.
+      2. For every core skill required by that role, we check the student's rating.
+      3. If Student Rating < Benchmark:
+         - Gap of 2 levels (e.g. beginner when advanced needed) -> HIGH PRIORITY
+         - Gap of 1 level (e.g. beginner when intermediate needed) -> MEDIUM PRIORITY
+         - Student Rating >= Benchmark -> STRENGTH (LOW PRIORITY GAP)
+      4. We also scan the student's typed curriculum & tools. If critical tools (like Git or SQL)
+         are completely missing from their text, we flag them as "Not Covered in Curriculum".
+      5. We compute a 0 - 100% Readiness Score.
+    */
+    function runSkillGapAnalysis() {
+      const roleKey = userCurriculumData.roleKey;
+      const profile = JOB_PROFILES[roleKey] || JOB_PROFILES["Other"];
+      const roleName = userCurriculumData.role || profile.title;
+
+      calculatedGaps = [];
+      let totalPointsEarned = 0;
+      let totalPossiblePoints = 0;
+
+      let strengthsCount = 0;
+      let gapCount = 0;
+      let highPriorityCount = 0;
+      let missingCurriculumCount = 0;
+
+      // 1. Evaluate Core Role Skills
+      profile.coreSkills.forEach(item => {
+        const userRating = userAssessmentRatings[item.key] || 1; // Default to 1
+        const benchmark = item.benchmark;
+
+        totalPointsEarned += userRating;
+        totalPossiblePoints += 3; // Maximum rating is 3
+
+        let priority = "low";
+        let priorityLabel = "Low Priority";
+        let status = "Strength / On Track";
+
+        if (userRating < benchmark) {
+          gapCount++;
+          if (benchmark - userRating >= 2 || userRating === 1) {
+            priority = "high";
+            priorityLabel = "High Priority 🔥";
+            status = "Needs Urgent Practice";
+            highPriorityCount++;
+          } else {
+            priority = "medium";
+            priorityLabel = "Medium Priority ⚡";
+            status = "Needs Reinforcement";
+          }
+        } else {
+          strengthsCount++;
+        }
+
+        calculatedGaps.push({
+          category: item.key.startsWith('tech_') ? 'technical' : (item.key.startsWith('int_') ? 'interview' : 'professional'),
+          name: item.name,
+          userRating: userRating,
+          benchmark: benchmark,
+          priority: priority,
+          priorityLabel: priorityLabel,
+          status: status,
+          why: item.why
+        });
+      });
+
+      // 2. Evaluate Tools & Syllabus Presence
+      if (profile.requiredTools) {
+        profile.requiredTools.forEach(tool => {
+          const lowerTool = tool.toLowerCase();
+          const presentInInput = userCurriculumData.tools.includes(lowerTool) || userCurriculumData.technical.includes(lowerTool);
+          
+          if (!presentInInput) {
+            missingCurriculumCount++;
+            gapCount++;
+            calculatedGaps.push({
+              category: 'technical',
+              name: `Tool Missing in Syllabus: ${tool}`,
+              userRating: 1,
+              benchmark: 2,
+              priority: 'high',
+              priorityLabel: 'High Priority 🔥',
+              status: 'Not Found in Academic Input',
+              why: `Industry teams building ${roleName} products use ${tool} daily. Since this was not noted in your syllabus, you should learn it via free tutorials.`
+            });
+          }
+        });
+      }
+
+      // 3. Evaluate All Interview Elements for completeness
+      const interviewKeys = [
+        { key: "int_intro", name: "Self-Introduction & Elevator Pitch", why: "First impressions dictate the tone of the entire interview." },
+        { key: "int_technical", name: "Technical Interview & Live Problem Solving", why: "Standard screening phase for core technical skills." },
+        { key: "int_hr", name: "HR & Behavioral Question Readiness", why: "Assesses workplace culture fit, attitude, and honesty." },
+        { key: "int_resume", name: "Resume & Project Presentation", why: "Gets you shortlisted for interview rounds." },
+        { key: "int_project", name: "Project Explanation Clarity", why: "Proves you were the real author of your academic projects." },
+        { key: "int_confidence", name: "Interview Confidence & Calmness", why: "Helps you communicate without freezing up under pressure." }
+      ];
+
+      interviewKeys.forEach(intItem => {
+        // Only add if not already in coreSkills
+        const exists = calculatedGaps.some(g => g.name.includes(intItem.name));
+        if (!exists) {
+          const userRating = userAssessmentRatings[intItem.key] || 1;
+          const benchmark = 2; // Default industry standard is at least intermediate
+          totalPointsEarned += userRating;
+          totalPossiblePoints += 3;
+
+          let priority = "low";
+          let priorityLabel = "Low Priority";
+          let status = "On Track";
+
+          if (userRating < benchmark) {
+            gapCount++;
+            priority = (userRating === 1) ? "high" : "medium";
+            priorityLabel = (userRating === 1) ? "High Priority 🔥" : "Medium Priority ⚡";
+            status = "Needs Preparation";
+            if (priority === "high") highPriorityCount++;
+          } else {
+            strengthsCount++;
+          }
+
+          calculatedGaps.push({
+            category: 'interview',
+            name: intItem.name,
+            userRating: userRating,
+            benchmark: benchmark,
+            priority: priority,
+            priorityLabel: priorityLabel,
+            status: status,
+            why: intItem.why
+          });
+        }
+      });
+
+      // Calculate percentage score (rounded)
+      const readinessScore = Math.min(100, Math.round((totalPointsEarned / totalPossiblePoints) * 100));
+
+      // Update UI elements
+      document.getElementById('dashboardRoleSubtitle').textContent = 
+        `Customized gap analysis for ${userCurriculumData.name} targeting the ${roleName} role.`;
+
+      document.getElementById('readinessScoreVal').textContent = `${readinessScore}%`;
+      document.getElementById('studentGreetingHeading').textContent = `${userCurriculumData.name}'s Readiness: ${roleName}`;
+      
+      // Stage badges
+      const stageBadge = document.getElementById('stageStatusBadge');
+      const feedbackP = document.getElementById('studentAnalysisFeedback');
+      
+      if (readinessScore >= 80) {
+        stageBadge.textContent = "🌳 Flourishing & Job-Ready";
+        feedbackP.textContent = "Excellent work! Your technical foundation and interview readiness are strong. Focus on fine-tuning your project presentations and mock rehearsals.";
+      } else if (readinessScore >= 55) {
+        stageBadge.textContent = "🌿 Growing Sapling (Intermediate)";
+        feedbackP.textContent = "Good academic progress! You understand the fundamentals, but need to bridge practical tools, GitHub projects, and structured interview answers.";
+      } else {
+        stageBadge.textContent = "🌱 Sprouting Learner (Foundational)";
+        feedbackP.textContent = "You are at an early sprouting stage. Do not worry—many college students start here. Following the 4-week roadmap will give you the practical skills employers look for.";
+      }
+
+      // KPIs
+      document.getElementById('kpiStrongCount').textContent = strengthsCount;
+      document.getElementById('kpiGapCount').textContent = gapCount;
+      document.getElementById('kpiMissingCurriculumCount').textContent = missingCurriculumCount;
+      document.getElementById('kpiPriorityCount').textContent = highPriorityCount;
+
+      // Render cards & charts
+      renderGapCards(calculatedGaps);
+      renderVisualComparisonBars(calculatedGaps);
+      renderCourseRecommendations(roleKey, calculatedGaps);
+      generateRoadmap(roleName, calculatedGaps, profile);
+      populatePersonalNotesTemplate(userCurriculumData, calculatedGaps, profile, readinessScore);
+    }
+
+    // -------------------------------------------------------------------------
+    // 7. RENDER GAP CARDS & CATEGORY FILTERING
+    // -------------------------------------------------------------------------
+    function renderGapCards(gaps) {
+      const container = document.getElementById('gapCardsContainer');
+      container.innerHTML = '';
+
+      if (gaps.length === 0) {
+        container.innerHTML = `<div class="card" style="text-align: center; padding: 30px;">
+          <p>No gaps found in this filter category! Great job maintaining your skills.</p>
+        </div>`;
+        return;
+      }
+
+      gaps.forEach(gap => {
+        const ratingText = gap.userRating === 1 ? "🌱 Beginner" : (gap.userRating === 2 ? "🌿 Intermediate" : "🌳 Advanced");
+        const benchText = gap.benchmark === 1 ? "Beginner" : (gap.benchmark === 2 ? "Intermediate" : "Advanced");
+        const priorityClass = gap.priority === 'high' ? 'priority-high' : (gap.priority === 'medium' ? 'priority-medium' : 'priority-low');
+
+        const card = document.createElement('div');
+        card.className = 'gap-card';
+        card.setAttribute('data-priority', gap.priority);
+        card.setAttribute('data-category', gap.category);
+
+        card.innerHTML = `
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span class="priority-tag ${priorityClass}">${gap.priorityLabel}</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: capitalize;">${gap.category}</span>
+            </div>
+            <h4 style="margin: 0; color: var(--primary-forest);">${gap.name}</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0;">${gap.why}</p>
+          </div>
+
+          <div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Current Self-Rating:</div>
+            <strong style="color: var(--text-dark);">${ratingText}</strong>
+            <div style="font-size: 0.8rem; color: #5a7563; margin-top: 4px;">Target Requirement: <strong>${benchText}</strong></div>
+          </div>
+
+          <div style="text-align: right;">
+            <span style="font-size: 0.85rem; font-weight: 600; color: ${gap.priority === 'high' ? '#C0392B' : '#214F36'};">
+              Status: ${gap.status}
+            </span>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function filterGapCards(filterType, buttonEl) {
+      // Manage active button style
+      const tabBtns = document.querySelectorAll('.analysis-tabs .tab-btn');
+      tabBtns.forEach(btn => btn.classList.remove('active'));
+      buttonEl.classList.add('active');
+
+      if (filterType === 'all') {
+        renderGapCards(calculatedGaps);
+      } else if (filterType === 'high') {
+        renderGapCards(calculatedGaps.filter(g => g.priority === 'high'));
+      } else if (filterType === 'technical') {
+        renderGapCards(calculatedGaps.filter(g => g.category === 'technical'));
+      } else if (filterType === 'interview') {
+        renderGapCards(calculatedGaps.filter(g => g.category === 'interview'));
+      } else if (filterType === 'strengths') {
+        renderGapCards(calculatedGaps.filter(g => g.userRating >= g.benchmark));
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 8. RENDER VISUAL BENCHMARK CHART (HTML & CSS)
+    // -------------------------------------------------------------------------
+    function renderVisualComparisonBars(gaps) {
+      const container = document.getElementById('visualBarChartContainer');
+      container.innerHTML = '';
+
+      // Take first 6 key skills
+      const displaySubset = gaps.slice(0, 6);
+
+      displaySubset.forEach(item => {
+        // Calculate percentage width (1 = 33%, 2 = 66%, 3 = 100%)
+        const userWidth = Math.round((item.userRating / 3) * 100);
+        const benchPos = Math.round((item.benchmark / 3) * 100);
+
+        const row = document.createElement('div');
+        row.innerHTML = `
+          <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 2px;">
+            <strong style="color: var(--primary-forest);">${item.name}</strong>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">
+              You: ${item.userRating}/3 | Target: ${item.benchmark}/3
+            </span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill-user" style="width: ${userWidth}%;"></div>
+            <div class="bar-bench-marker" style="left: ${benchPos}%;" title="Industry Benchmark: ${item.benchmark}/3"></div>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    // -------------------------------------------------------------------------
+    // 9. COURSE RECOMMENDATIONS (100% Free & Direct Links)
+    // -------------------------------------------------------------------------
+    function renderCourseRecommendations(roleKey, gaps) {
+      const container = document.getElementById('coursesGridContainer');
+      container.innerHTML = '';
+
+      const profile = JOB_PROFILES[roleKey] || JOB_PROFILES["Other"];
+      const recommendedCourses = profile.courses || [];
+
+      // Also append generic high-value platforms
+      const universalCourses = [
+        {
+          title: "Technical Interview & Aptitude Preparation",
+          platform: "IndiaBIX / freeCodeCamp",
+          desc: "Practice free multiple choice questions, aptitude tests, and interview technical puzzles.",
+          url: "https://www.indiabix.com/",
+          type: "Practice Exercises"
+        },
+        {
+          title: "Open Source Computer Science Degree Curriculum",
+          platform: "OSSU (GitHub)",
+          desc: "A complete computer science curriculum using high quality, completely free university courses.",
+          url: "https://github.com/ossu/computer-science",
+          type: "Curriculum Guide"
+        }
+      ];
+
+      const fullList = [...recommendedCourses, ...universalCourses];
+
+      fullList.forEach(course => {
+        const card = document.createElement('div');
+        card.className = 'course-card';
+        card.innerHTML = `
+          <div>
+            <span class="course-platform">${course.platform}</span>
+            <h4 class="course-title">${course.title}</h4>
+            <div class="course-meta">
+              <span>🆓 100% Free</span>
+              <span>•</span>
+              <span>${course.type}</span>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">${course.desc}</p>
+          </div>
+
+          <div class="course-actions">
+            <a href="${course.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small" style="flex: 1;">
+              Open Free Course ↗
+            </a>
+            <button type="button" class="btn btn-secondary btn-small" onclick="appendCourseToNotes('${course.title.replace(/'/g, "\\'")}', '${course.platform}')" title="Add this course to your notes">
+              + Add to Notes
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Quick helper to add course into notes
+    function appendCourseToNotes(title, platform) {
+      const notesArea = document.getElementById('personalNotesArea');
+      const entry = `\n- [ ] Study Course: ${title} on ${platform}`;
+      notesArea.value += entry;
+      savePersonalNotes();
+      showToast(`Added "${title}" to your personal study notes!`);
+    }
+
+    // -------------------------------------------------------------------------
+    // 10. PERSONALIZED 4-WEEK ROADMAP GENERATOR
+    // -------------------------------------------------------------------------
+    function generateRoadmap(roleName, gaps, profile) {
+      const timelineContainer = document.getElementById('roadmapTimelineContainer');
+      timelineContainer.innerHTML = '';
+
+      // High-priority skills
+      const highSkills = gaps.filter(g => g.priority === 'high').map(g => g.name);
+      const topSkill1 = highSkills[0] || "Foundational Concepts";
+      const topSkill2 = highSkills[1] || "Tooling & Practical Workflow";
+
+      const weeks = [
+        {
+          weekNum: "Week 1",
+          title: "Strengthen Foundational Knowledge & Core Principles",
+          objective: `Fill core conceptual gaps required for ${roleName}. Focus on fundamentals rather than rushing into complex tools.`,
+          resource: profile.courses && profile.courses[0] ? profile.courses[0].title : "freeCodeCamp / CS50",
+          tasks: [
+            { id: "w1_t1", title: `Review foundational theory for: ${topSkill1}`, detail: "Study 45 minutes daily using official free documentation or tutorial videos." },
+            { id: "w1_t2", title: "Write handwritten or typed summary notes of 10 key terms", detail: "Being able to define terms in your own simple English builds mental clarity." },
+            { id: "w1_t3", title: "Complete 5 beginner practice exercises", detail: "Solve foundational questions on freeCodeCamp, Kaggle, or LeetCode Free." }
+          ]
+        },
+        {
+          weekNum: "Week 2",
+          title: "Learn Missing Tools & Workflow Standards",
+          objective: "Get hands-on experience with industry-standard development and analytical software tools.",
+          resource: "Git & GitHub on Microsoft Learn / Platform Tutorials",
+          tasks: [
+            { id: "w2_t1", title: `Install and configure required tools (Git, VS Code, or role-specific software)`, detail: "Create a GitHub account or local workspace folder to keep your work organized." },
+            { id: "w2_t2", title: `Hands-on practice with: ${topSkill2}`, detail: "Follow a step-by-step tutorial to create, edit, and save your work using the tool." },
+            { id: "w2_t3", title: "Commit and upload your initial code/notes to GitHub", detail: "Learn basic commands: git init, git add, git commit, git push." }
+          ]
+        },
+        {
+          weekNum: "Week 3",
+          title: "Complete a Practical Mini-Project",
+          objective: `Apply what you have learned by building a real practical application: ${profile.miniProject.title}.`,
+          resource: "GitHub repository + local development environment",
+          tasks: [
+            { id: "w3_t1", title: `Project Blueprint: ${profile.miniProject.title}`, detail: profile.miniProject.desc },
+            { id: "w3_t2", title: "Implement core features step by step", detail: "Write clean, readable code with descriptive variable names and comments." },
+            { id: "w3_t3", title: "Write a clear README file for your project", detail: "Explain 1) What it does, 2) How to run it, and 3) Screenshots or examples." }
+          ]
+        },
+        {
+          weekNum: "Week 4",
+          title: "Technical & HR Interview Readiness",
+          objective: "Prepare your elevator pitch, polish your resume, and practice verbal explanations using the STAR method.",
+          resource: "SkillSprout Interview Hub & IndiaBIX practice sets",
+          tasks: [
+            { id: "w4_t1", title: "Rehearse 90-second self-introduction using the 90s timer", detail: "Practice until you can introduce yourself clearly without rushing or stuttering." },
+            { id: "w4_t2", title: "Prepare 6-Step Project Explanation for Week 3 project", detail: "Script: Problem -> Objective -> Tools -> My Contribution -> Result -> Lessons." },
+            { id: "w4_t3", title: "Update 1-page resume with your completed project & skills", detail: "Proofread for spelling errors and format with clear section headings." }
+          ]
+        }
+      ];
+
+      // Retrieve saved checkbox states from localStorage
+      const savedTasks = JSON.parse(localStorage.getItem('skillsprout_tasks') || '{}');
+
+      weeks.forEach((week, wIndex) => {
+        const weekCard = document.createElement('div');
+        weekCard.className = 'week-card';
+
+        let taskListHtml = '';
+        week.tasks.forEach(task => {
+          const isChecked = savedTasks[task.id] === true;
+          taskListHtml += `
+            <li class="task-item ${isChecked ? 'completed' : ''}" id="item_${task.id}">
+              <input type="checkbox" id="${task.id}" ${isChecked ? 'checked' : ''} onchange="handleTaskToggle('${task.id}')" aria-label="${task.title}">
+              <div class="task-content">
+                <span class="task-title">${task.title}</span>
+                <span class="task-detail">${task.detail}</span>
+              </div>
+            </li>
+          `;
+        });
+
+        weekCard.innerHTML = `
+          <div class="week-header">
+            <h4>
+              <span>📅</span> ${week.weekNum}: ${week.title}
+            </h4>
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--primary-forest);">
+              Goal Focused
+            </span>
+          </div>
+          <div class="week-body">
+            <p style="font-size: 0.92rem; color: var(--text-dark); margin-bottom: 8px;">
+              <strong>Learning Objective:</strong> ${week.objective}
+            </p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+              <strong>Suggested Free Resource:</strong> ${week.resource}
+            </p>
+            <ul class="task-list">
+              ${taskListHtml}
+            </ul>
+          </div>
+        `;
+
+        timelineContainer.appendChild(weekCard);
+      });
+
+      updateRoadmapProgress();
+    }
+
+    // Toggle task completion and persist in localStorage
+    function handleTaskToggle(taskId) {
+      const checkbox = document.getElementById(taskId);
+      const itemWrapper = document.getElementById(`item_${taskId}`);
+      const savedTasks = JSON.parse(localStorage.getItem('skillsprout_tasks') || '{}');
+
+      if (checkbox.checked) {
+        savedTasks[taskId] = true;
+        itemWrapper.classList.add('completed');
+      } else {
+        delete savedTasks[taskId];
+        itemWrapper.classList.remove('completed');
+      }
+
+      localStorage.setItem('skillsprout_tasks', JSON.stringify(savedTasks));
+      updateRoadmapProgress();
+    }
+
+    // Calculate completion %
+    function updateRoadmapProgress() {
+      const allCheckboxes = document.querySelectorAll('#roadmapTimelineContainer input[type="checkbox"]');
+      if (allCheckboxes.length === 0) return;
+
+      let completed = 0;
+      allCheckboxes.forEach(cb => {
+        if (cb.checked) completed++;
+      });
+
+      const total = allCheckboxes.length;
+      const pct = Math.round((completed / total) * 100);
+
+      const bar = document.getElementById('roadmapProgressBar');
+      const label = document.getElementById('roadmapProgressPct');
+
+      if (bar && label) {
+        bar.style.width = `${pct}%`;
+        label.textContent = `${pct}% Complete (${completed} / ${total} Tasks)`;
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 11. PERSONAL NOTES TEMPLATE & LOCALSTORAGE MANAGEMENT
+    // -------------------------------------------------------------------------
+    function populatePersonalNotesTemplate(curriculum, gaps, profile, score) {
+      const notesArea = document.getElementById('personalNotesArea');
+      
+      // If user already had custom typed notes, don't overwrite without warning unless empty
+      const existing = localStorage.getItem('skillsprout_personal_notes');
+      if (existing && existing.trim().length > 100 && !confirm("Would you like to refresh your personal notes template with your latest gap analysis results? (Your current notes will be backed up).")) {
+        return;
+      }
+
+      const highGaps = gaps.filter(g => g.priority === 'high').map(g => `- ${g.name} (${g.why})`).join('\n');
+      const strengths = gaps.filter(g => g.userRating >= g.benchmark).map(g => `- ${g.name}`).join('\n') || "- Foundations in academic degree subjects";
+
+      const template = `================================================================================
+🌱 SKILLSPROUT: MY PERSONAL CAREER GROWTH & INTERVIEW PREPARATION PLAN
+Candidate: ${curriculum.name} | Degree: ${curriculum.degree} (${curriculum.branch})
+Target Role: ${curriculum.role} | Readiness Score: ${score}%
+Generated: ${new Date().toLocaleDateString()}
+================================================================================
+
+1. MY TARGET JOB ROLE:
+   ${curriculum.role}
+
+2. MY CURRENT STRENGTHS (What I can be proud of):
+${strengths}
+
+3. SKILLS I NEED TO IMPROVE (Highest Priority Gaps):
+${highGaps || "- Continue practicing core subject algorithms and project workflows"}
+
+4. MISSING TECHNICAL KNOWLEDGE & TOOLS TO LEARN:
+- Tools: ${profile.requiredTools ? profile.requiredTools.join(', ') : 'Git, GitHub, VS Code'}
+- Focus Areas: Deepen practical implementation of projects rather than just theory definitions.
+
+5. COMMUNICATION & PROFESSIONAL SKILLS TO PRACTICE:
+- Practice introducing myself smoothly in English within 90 seconds.
+- Practice explaining my academic project using the 6-step framework.
+- Structure behavioral interview answers using the STAR method (Situation, Task, Action, Result).
+
+6. RECOMMENDED FREE COURSES TO COMPLETE:
+${profile.courses.map(c => `- ${c.title} (${c.platform}) -> ${c.url}`).join('\n')}
+
+7. PRACTICAL PROJECT TO COMPLETE THIS MONTH:
+- Project Idea: ${profile.miniProject.title}
+- Description: ${profile.miniProject.desc}
+- My Target Completion Date: [Set a date 3 weeks from today]
+
+8. MY WEEKLY IMPROVEMENT GOALS:
+- Week 1: Spend 45 minutes daily studying missing core fundamentals.
+- Week 2: Build familiarity with Git and version control on GitHub.
+- Week 3: Build and test my mini-project end-to-end.
+- Week 4: Complete 3 mock interview rehearsals and polish my 1-page resume.
+
+9. MY PROGRESS & LESSONS LEARNED (Keep your daily diary here):
+- Day 1: Completed SkillSprout gap analysis and set my target role.
+- Notes: 
+`;
+
+      notesArea.value = template;
+      savePersonalNotes(false); // Save silently
+    }
+
+    function savePersonalNotes(showToastAlert = true) {
+      const content = document.getElementById('personalNotesArea').value;
+      localStorage.setItem('skillsprout_personal_notes', content);
+
+      const timeSpan = document.getElementById('notesLastSavedTime');
+      const now = new Date();
+      timeSpan.textContent = `Last saved: ${now.toLocaleTimeString()}`;
+
+      if (showToastAlert) {
+        showToast("💾 Personal notes saved safely to browser storage!");
+      }
+    }
+
+    function loadSavedNotesFromStorage() {
+      const saved = localStorage.getItem('skillsprout_personal_notes');
+      if (saved) {
+        document.getElementById('personalNotesArea').value = saved;
+        document.getElementById('notesLastSavedTime').textContent = "Loaded previously saved notes from browser";
+      }
+    }
+
+    function downloadNotes() {
+      const content = document.getElementById('personalNotesArea').value;
+      if (!content.trim()) {
+        alert("Your notes are currently empty! Click 'Analyze My Skills' first or write your notes.");
+        return;
+      }
+
+      // Create a downloadable text file using Blob
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const downloadLink = document.createElement('a');
+      downloadLink.href = url;
+      downloadLink.download = `SkillSprout_Career_Notes_${new Date().toISOString().slice(0, 10)}.txt`;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      URL.revokeObjectURL(url);
+
+      showToast("📥 Download started! Check your downloads folder.");
+    }
+
+    function printNotes() {
+      window.print();
+    }
+
+    function confirmClearNotes() {
+      const confirmation = confirm("Are you sure you want to clear your saved notes? This action cannot be undone.");
+      if (confirmation) {
+        document.getElementById('personalNotesArea').value = '';
+        localStorage.removeItem('skillsprout_personal_notes');
+        document.getElementById('notesLastSavedTime').textContent = "Notes cleared";
+        showToast("🗑️ Notes cleared.");
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 12. MOCK INTERVIEW REHEARSAL & 90-SECOND TIMER
+    // -------------------------------------------------------------------------
+    function renderInterviewQuestion(index) {
+      currentInterviewIndex = index;
+      const q = INTERVIEW_QUESTIONS[index];
+
+      document.getElementById('currentQuestionNum').textContent = index + 1;
+      document.getElementById('totalQuestionsNum').textContent = INTERVIEW_QUESTIONS.length;
+      document.getElementById('currentQuestionText').textContent = q.question;
+      document.getElementById('currentQuestionGuidance').textContent = q.guidance;
+
+      // Check if user has saved answer in storage for this question
+      const savedAnswers = JSON.parse(localStorage.getItem('skillsprout_interview_answers') || '{}');
+      document.getElementById('practiceAnswerInput').value = savedAnswers[q.id] || q.starterNotes;
+
+      // Update button states
+      document.getElementById('btnPrevQuestion').disabled = (index === 0);
+      document.getElementById('btnNextQuestion').disabled = (index === INTERVIEW_QUESTIONS.length - 1);
+
+      // Reset timer for fresh rehearsal
+      resetTimer();
+    }
+
+    function navigateInterviewQuestion(direction) {
+      // Save current answer first
+      saveCurrentQuestionAnswer();
+
+      const nextIndex = currentInterviewIndex + direction;
+      if (nextIndex >= 0 && nextIndex < INTERVIEW_QUESTIONS.length) {
+        renderInterviewQuestion(nextIndex);
+      }
+    }
+
+    function saveCurrentQuestionAnswer() {
+      const q = INTERVIEW_QUESTIONS[currentInterviewIndex];
+      const answer = document.getElementById('practiceAnswerInput').value;
+      const savedAnswers = JSON.parse(localStorage.getItem('skillsprout_interview_answers') || '{}');
+      savedAnswers[q.id] = answer;
+      localStorage.setItem('skillsprout_interview_answers', JSON.stringify(savedAnswers));
+    }
+
+    // Timer controls
+    function toggleTimer() {
+      const btn = document.getElementById('btnToggleTimer');
+      if (isTimerRunning) {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        btn.textContent = "▶ Resume Timer";
+      } else {
+        isTimerRunning = true;
+        btn.textContent = "⏸ Pause Timer";
+        timerInterval = setInterval(() => {
+          if (timerSeconds > 0) {
+            timerSeconds--;
+            updateTimerDisplay();
+          } else {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            btn.textContent = "▶ Re-start Timer";
+            showToast("⏰ 90 Seconds Rehearsal Complete! Great practice!");
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      isTimerRunning = false;
+      timerSeconds = 90;
+      updateTimerDisplay();
+      const btn = document.getElementById('btnToggleTimer');
+      if (btn) btn.textContent = "▶ Start Timer";
+    }
+
+    function updateTimerDisplay() {
+      const display = document.getElementById('rehearsalTimerDisplay');
+      const mins = Math.floor(timerSeconds / 60);
+      const secs = timerSeconds % 60;
+      display.textContent = `⏱️ ${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      
+      if (timerSeconds <= 15) {
+        display.style.backgroundColor = '#FEECEB';
+        display.style.color = '#C0392B';
+      } else {
+        display.style.backgroundColor = '#FDF3E3';
+        display.style.color = '#A36400';
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 13. TOAST NOTIFICATION UTILITY
+    // -------------------------------------------------------------------------
+    let toastTimeout = null;
+    function showToast(message, icon = "🌱") {
+      const toast = document.getElementById('toastNotice');
+      const msgSpan = document.getElementById('toastMessage');
+      const iconSpan = document.getElementById('toastIcon');
+
+      if (!toast) return;
+
+      msgSpan.textContent = message;
+      iconSpan.textContent = icon;
+      toast.classList.add('show');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
